@@ -2,8 +2,15 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var config = path.join(__dirname,"config.json");
+var port = process.argv[2]||8080;
+port = +port;
 http.createServer(function(req,res){
-  console.log("new req to "+req.url);
+  var reqLog = req.method+' '+req.url+'\t'+(new Date().toString());
+  fs.appendFile('requests.log', reqLog+'\n', (err) => {
+    if (err) throw err;
+    console.log(reqLog);
+  });
+  //add log to log file
   var content = fs.readFileSync(config);//reading config file through fileSystem allowing change on the fly in config.json
   content = JSON.parse(String(content));
   var key = Object.keys(content);
@@ -27,6 +34,6 @@ http.createServer(function(req,res){
     res.writeHead(404,{"Content-Type":"text/plain"});
     res.end('file not found');//error no route found
   }
-}).listen(80,function(){
-  console.log('file server has started');
+}).listen(port,function(){
+  console.log('File server has started at port '+port);
 })

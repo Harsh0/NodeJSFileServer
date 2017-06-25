@@ -1,7 +1,11 @@
 {
   "/":{
-    "path":"D:/Bahubali 2 (2017) 720p DesiSCR Rip - x264 AC3 5.1 (Hindi, Telugu, Tamil and .mkv",
+    "path":"/home/de-iot/hello.c",
     "relative":false
+  },
+  "/index":{
+  	"path":"index.js",
+    "relative":true
   },
   "/config":{
     "path":"config.json",

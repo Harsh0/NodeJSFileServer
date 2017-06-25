@@ -1,0 +1,20 @@
+{
+  "name": "nodefileserver",
+  "version": "1.0.0",
+  "description": "This file server allow you to serve file to the client according to the url set in the config file. config file can be edited during running server and changes will work Now can pass the port as process args, and check the log at later",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harsh0/NodeJSFileServer.git"
+  },
+  "author": "Harsh0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harsh0/NodeJSFileServer/issues"
+  },
+  "homepage": "https://github.com/Harsh0/NodeJSFileServer#readme"
+}
