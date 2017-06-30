@@ -1,14 +1,14 @@
 {
   "/":{
-    "path":"/home/de-iot/hello.c",
-    "relative":false
-  },
-  "/index":{
-  	"path":"index.js",
+    "path":"config.json",
     "relative":true
   },
-  "/config":{
-    "path":"config.json",
+  "/upload":{
+    "path":"static/upload.html",
+    "relative":true
+  },
+  "/jquery":{
+  	"path":"static/jquery.js",
     "relative":true
   }
 }

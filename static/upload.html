@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="/jquery" charset="utf-8"></script>
+    <script type="text/javascript">
+      function showStatus(msg,delay){
+        $('.status').hide().html(msg).fadeIn(200).delay(delay).fadeOut(300);
+      }
+      function showPermStatus(msg){
+        $('.permStatus').html(msg);
+      }
+      function ajax(config){
+        this.method = config.method || 'GET';
+        this.payload = config.payload || null;
+        var xhr = new XMLHttpRequest();
+        xhr.open(this.method, config.url, true);
+        xhr.upload.addEventListener("progress", function(e){
+          config.progress(e);
+        });
+        xhr.addEventListener("load", function(){
+          config.success(xhr);
+        });
+        xhr.addEventListener("error", config.error);
+        xhr.send(this.payload);
+      }
+      var host = "";
+      $(document).on('click','#doUpload',function(){
+        uploadNow();
+      });
+      function uploadNow(){
+			$('.progress').fadeIn(100);
+			var uploadURL = host +"uploadFile";
+			var uploadFile = $('.uploadFile');
+			if(uploadFile.val()!=''){
+				var form = new FormData();
+				form.append("upload",uploadFile[0].files[0]);
+				//Perform the AJAX POST request and send the file
+				ajax({
+					method:'post',
+					url:uploadURL,
+					success:function(data){
+						$('.progress').fadeOut(100);
+						uploadFile.val('');
+					},
+					progress:function(event){
+						if(event.lengthComputable){
+							var perc = (event.loaded *100)/event.total;
+							$('.progress').css('width',(perc+'%'));
+						}
+            showPermStatus('File uploaded successfully');
+					},
+					error:function(){
+						showStatus('Some error occured!! Please try again',2000)
+					},
+					payload:form
+				})
+			}
+		}
+    </script>
+    <style media="screen">
+      .progress {
+      	position:relative;
+      	background: rgb(163, 229, 163);
+      	height:2px;
+      	width: 0%;
+      	box-shadow:0px 0px 5px rgb(0,255,0);
+      }
+    </style>
+    <title>upload file</title>
+  </head>
+  <body>
+    <input type="file" name="uploadFile" class="uploadFile">
+    <button id="doUpload">Upload</button>
+    <div class="progress"></div>
+    <h5 class="status"></h5>
+    <h5 class="permStatus"></h5>
+  </body>
+</html>
