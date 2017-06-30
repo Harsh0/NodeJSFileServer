@@ -19,6 +19,10 @@ http.createServer((req,res)=>{
   var key = Object.keys(content);
   //file upload route
   if(req.url=='/uploadFile'){
+    if(!fs.existsSync('uploads')){
+      //make directory
+      fs.mkdir('uploads');
+    }
     var newForm = formidable.IncomingForm();
     newForm.keepExtensions = true;
     let tmpFile,nFile;
@@ -31,7 +35,9 @@ http.createServer((req,res)=>{
       res.end();
     });
     newForm.on('end',function(){
-      fs.rename(tmpFile,nFile,function(){
+      fs.rename(tmpFile,nFile,function(err){
+        if(err) console.log(err);
+        else
         console.log('File uploaded successfully : '+path.basename(nFile));
       });
       reqLog = req.method+' '+req.url+'\t'+nFile+'\t'+(new Date().toString());
