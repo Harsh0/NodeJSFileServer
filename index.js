@@ -17,6 +17,7 @@ let staticKey = Object.keys(static);
 http.createServer((req,res)=>{
   content = getJson(config,false);
   var key = Object.keys(content);
+  //file upload route
   if(req.url=='/uploadFile'){
     var newForm = formidable.IncomingForm();
     newForm.keepExtensions = true;

@@ -42,16 +42,16 @@
 					success:function(data){
 						$('.progress').fadeOut(100);
 						uploadFile.val('');
+            showPermStatus('File uploaded successfully',2000);
 					},
 					progress:function(event){
 						if(event.lengthComputable){
 							var perc = (event.loaded *100)/event.total;
 							$('.progress').css('width',(perc+'%'));
 						}
-            showPermStatus('File uploaded successfully');
 					},
 					error:function(){
-						showStatus('Some error occured!! Please try again',2000)
+						showPermStatus('Some error occured!! Please try again',2000)
 					},
 					payload:form
 				})
@@ -64,7 +64,7 @@
       	background: rgb(163, 229, 163);
       	height:2px;
       	width: 0%;
-      	box-shadow:0px 0px 5px rgb(0,255,0);
+      	box-shadow:0px 0px 5px rgb(255,255,0);
       }
     </style>
     <title>upload file</title>
