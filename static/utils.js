@@ -19,6 +19,7 @@ function ajax(config){
   xhr.addEventListener("error", config.error);
   xhr.send(this.payload);
 }
+
 var host = "";
 $(document).on('click','#doUpload',function(){
   uploadNow();
@@ -51,6 +52,8 @@ function uploadNow(){
         }
       },
       error:function(){
+        $('.progress').css('width','0%');
+        uploadFile.val('');
         showStatus('Some error occured!! Please try again')
       },
       payload:form
