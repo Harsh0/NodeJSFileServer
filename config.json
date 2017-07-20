@@ -1,11 +1,12 @@
 {
   "/":{
-    "path":"config.json",
+    "path":"index.js",
     "relative":true
   },
   "/upload":{
     "path":"static/upload.html",
-    "relative":true
+    "relative":true,
+    "uploadPath":"/home/de-iot/Downloads/"
   },
   "/jquery":{
   	"path":"static/jquery.js",

@@ -28,18 +28,20 @@ http.createServer((req,res)=>{
     let tmpFile,nFile;
     newForm.parse(req,function(err,fields,files){
       tmpFile = files.upload.path;
-      nFile = __dirname+'/uploads'+'/'+files.upload.name;
+      nFile = ((config['/upload'].uploadPath)||(__dirname+'/uploads/'))+files.upload.name;
       res.writeHead(200,{
         'Content-type':'text/plain'
       });
       res.end();
     });
     newForm.on('end',function(){
-      fs.rename(tmpFile,nFile,function(err){
-        if(err) console.log(err);
-        else
-        console.log('File uploaded successfully : '+path.basename(nFile));
-      });
+      let rs = fs.createReadStream(tmpFile);
+      let ws = fs.createWriteStream(nFile);
+      rs.pipe(ws);
+      rs.on('end',function(){
+        //delete tmpFile
+        fs.unlink(tmpFile);
+      })
       reqLog = req.method+' '+req.url+'\t'+nFile+'\t'+(new Date().toString());
       //add log to log file
       fs.appendFile('requests.log', reqLog+'\n', (err) => {
