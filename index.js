@@ -12,7 +12,7 @@ let getJson = (config,runTimeJsonUpdateFlag)=>{
     return require(config);
   }
 }
-let static = {'.html':'text/html','.js':'text/javascript','.css':'text/css'};
+let static = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.pdf':'application/pdf'};
 let staticKey = Object.keys(static);
 http.createServer((req,res)=>{
   content = getJson(config,false);
