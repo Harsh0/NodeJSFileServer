@@ -3,4 +3,13 @@ This file server allow you to serve file to the client according to the url set 
 
 Now can pass the port as process args, and check the log at later
 
-also you can upload file now...Yay..
+also you can upload file now by going to http://localhost:PORT/upload/ 
+
+and change the upload path by updating config.json file in runtime
+
+```
+//Run
+node index.js
+```
+
+...Yay..
