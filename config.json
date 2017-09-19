@@ -15,5 +15,5 @@
   "/utils":{
   	"path":"static/utils.js",
     "relative":true
-  },
+  }
 }

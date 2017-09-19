@@ -28,7 +28,7 @@ http.createServer((req,res)=>{
     let tmpFile,nFile;
     newForm.parse(req,function(err,fields,files){
       tmpFile = files.upload.path;
-      nFile = ((config['/upload'].uploadPath)||(__dirname+'/uploads/'))+files.upload.name;
+      nFile = ((content['/upload'].uploadPath)||(__dirname+'/uploads/'))+files.upload.name;
       res.writeHead(200,{
         'Content-type':'text/plain'
       });
